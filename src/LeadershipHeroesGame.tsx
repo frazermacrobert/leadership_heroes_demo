@@ -1,37 +1,37 @@
-// src/LeadershipHeroesGame.tsx
 import React, { useEffect, useState } from "react";
 import { loadHeroes, type EnrichedHero } from "./data/loadHeroes";
 import HeroCard from "./components/HeroCard";
 
 function LeadershipHeroesGame() {
   const [heroes, setHeroes] = useState<EnrichedHero[] | null>(null);
+  // game state (use EnrichedHero to match the loader)
+const [initialised, setInitialised] = useState(false);
+const [deck, setDeck] = useState<EnrichedHero[]>([]);
+const [discard, setDiscard] = useState<EnrichedHero[]>([]);
+const [team, setTeam] = useState<(EnrichedHero | null)[]>([null, null, null, null, null]);
+const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
+const [submitted, setSubmitted] = useState(false);
+const [message, setMessage] = useState<string | null>(null);
+
 
   useEffect(() => {
     loadHeroes().then(setHeroes).catch(() => setHeroes([]));
   }, []);
 
-  if (heroes === null) {
-    return <div className="p-6">Loading heroes…</div>;
-  }
-
-  if (heroes.length === 0) {
-    return <div className="p-6">No heroes found.</div>;
-  }
+  if (heroes === null) return <div className="p-6">Loading heroes…</div>;
+  if (heroes.length === 0) return <div className="p-6">No heroes found.</div>;
 
   return (
-    <main className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Leadership Heroes</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {heroes.map((h) => (
-          <HeroCard key={h.id} hero={h} clickable />
-        ))}
-      </div>
-    </main>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {heroes.map((h) => (
+        <HeroCard key={h.id} hero={h} clickable />
+      ))}
+    </div>
   );
 }
 
+// 👇 only ONE default export at the end of the file
 export default LeadershipHeroesGame;
-
 
 export type Hero = {
   id: string;
@@ -64,15 +64,6 @@ function downloadJSON(filename: string, data: unknown) {
   a.remove();
   URL.revokeObjectURL(url);
 }
-
-export default function LeadershipHeroesGame() {
-  const [initialised, setInitialised] = useState(false);
-  const [deck, setDeck] = useState<Hero[]>([]);
-  const [discard, setDiscard] = useState<Hero[]>([]);
-  const [team, setTeam] = useState<(Hero | null)[]>([null, null, null, null, null]);
-  const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
-  const [submitted, setSubmitted] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
 
   React.useEffect(() => {
     if (!initialised) {
