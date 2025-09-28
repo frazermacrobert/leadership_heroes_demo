@@ -136,7 +136,7 @@ export default function LeadershipHeroesGame() {
         <header className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-rose-700">Leadership Heroes — Team Builder</h1>
-            <p className="text-neutral-700 mt-1">Warm and engaging demo UI.</p>
+            <p className="text-neutral-700 mt-1">Leadership development prototype.</p>
           </div>
           <div className="flex items-center gap-2">
             <button onClick={() => setDeck((prev) => shuffle(prev))} className="px-3 py-2 rounded-xl border bg-rose-100 hover:bg-rose-200 shadow">
