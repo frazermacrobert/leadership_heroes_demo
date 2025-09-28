@@ -1,6 +1,6 @@
 // src/LeadershipHeroesGame.tsx
-import React, { useEffect, useState } from "react";
-import { loadHeroes, type EnrichedHero } from "./data/loadHeroes";
+import heroesData from "./data/heroes.json";
+import { useEffect, useState } from "react";
 import HeroCard from "./components/HeroCard";
 
 // If you still have a local Hero type you use elsewhere, keep it here:
