@@ -1,9 +1,9 @@
 // src/LeadershipHeroesGame.tsx
-import heroesData from "./data/heroes.json";
 import { useEffect, useState } from "react";
 import HeroCard from "./components/HeroCard";
+import heroesData from "./data/heroes.json";
 
-// If you still have a local Hero type you use elsewhere, keep it here:
+// Base data shape from JSON
 export type Hero = {
   id: string;
   number: number;
@@ -15,15 +15,18 @@ export type Hero = {
   secondary: string;
 };
 
+// If later code expects extra fields, extend here
+type EnrichedHero = Hero & { image?: string };
+
 function LeadershipHeroesGame() {
-  // 1) Load enriched heroes (with primary/secondary/image)
+  // 1) Load heroes (no fetch)
   const [heroes, setHeroes] = useState<EnrichedHero[] | null>(null);
 
   useEffect(() => {
-    loadHeroes().then(setHeroes).catch(() => setHeroes([]));
+    setHeroes(heroesData as EnrichedHero[]);
   }, []);
 
-  // 2) Game state (put YOUR hooks here; use EnrichedHero to match loader)
+  // 2) Game state (use EnrichedHero to match everywhere)
   const [initialised, setInitialised] = useState(false);
   const [deck, setDeck] = useState<EnrichedHero[]>([]);
   const [discard, setDiscard] = useState<EnrichedHero[]>([]);
@@ -31,8 +34,6 @@ function LeadershipHeroesGame() {
   const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
-
-  // TODO: move or re-add any shuffle/draw/submit helpers here (named functions), NOT default exports.
 
   if (heroes === null) return <div className="p-6">Loading heroes…</div>;
   if (heroes.length === 0) return <div className="p-6">No heroes found.</div>;
