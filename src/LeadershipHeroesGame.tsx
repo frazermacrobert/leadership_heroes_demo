@@ -183,7 +183,7 @@ export default function LeadershipHeroesGame() {
                   )}
                 </div>
 
-                {selectedSlot === i and card and (
+                {selectedSlot === i && card && (
                   <div className="absolute inset-0 rounded-2xl bg-black/50 backdrop-blur-sm flex flex-col items-center justify-center gap-2 p-3">
                     <div className="text-white text-sm mb-1">Swap this hero?</div>
                     <div className="flex gap-2">
