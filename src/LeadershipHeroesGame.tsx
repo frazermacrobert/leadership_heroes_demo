@@ -51,7 +51,7 @@ export default function LeadershipHeroesGame() {
   const [submitted, setSubmitted] = useState(false);
 
   React.useEffect(() => {
-    if (!initialised) { setDeck(shuffle(SEED_HEROES)); setInitialised(True as any as boolean); }
+    if (!initialised) { setDeck(shuffle(SEED_HEROES)); setInitialised(true); }
   }, [initialised]);
 
   const remainingTop = deck[deck.length - 1] || null;
