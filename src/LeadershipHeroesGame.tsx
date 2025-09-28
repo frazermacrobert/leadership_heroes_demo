@@ -1,5 +1,26 @@
-import React, { useMemo, useState } from "react";
-import HEROES from "./heroes.json";
+import React, { useEffect, useState } from "react";
+import { loadHeroes, type EnrichedHero } from "./data/loadHeroes";
+import HeroCard from "./components/HeroCard";
+
+export default function LeadershipHeroesGame() {
+  const [heroes, setHeroes] = useState<EnrichedHero[] | null>(null);
+
+  useEffect(() => {
+    loadHeroes().then(setHeroes).catch(() => setHeroes([]));
+  }, []);
+
+  if (heroes === null) return <div className="p-6">Loading heroes…</div>;
+  if (heroes.length === 0) return <div className="p-6">No heroes found.</div>;
+
+  return (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {heroes.map(h => (
+        <HeroCard key={h.id} hero={h} clickable />
+      ))}
+    </div>
+  );
+}
+
 
 export type Hero = {
   id: string;
