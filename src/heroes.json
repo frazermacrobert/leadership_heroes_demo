@@ -1,0 +1,542 @@
+[
+  {
+    "id": "h-01",
+    "number": 1,
+    "category": "Border Crosser",
+    "name": "The Explorer",
+    "tagline": "Seeks out new perspectives",
+    "description": "Seeks out fresh perspectives and new viewpoints.",
+    "color": "Teal"
+  },
+  {
+    "id": "h-02",
+    "number": 2,
+    "category": "Border Crosser",
+    "name": "The Connector",
+    "tagline": "Links people to shared goals",
+    "description": "Brings people together to create win-win solutions.",
+    "color": "Teal"
+  },
+  {
+    "id": "h-03",
+    "number": 3,
+    "category": "Border Crosser",
+    "name": "The Diplomat",
+    "tagline": "Navigates cultures with care",
+    "description": "Navigates cultures with agility and respect.",
+    "color": "Teal"
+  },
+  {
+    "id": "h-04",
+    "number": 4,
+    "category": "Border Crosser",
+    "name": "The Networker",
+    "tagline": "Builds allies everywhere",
+    "description": "Builds wide, lasting networks inside and outside the organisation.",
+    "color": "Teal"
+  },
+  {
+    "id": "h-05",
+    "number": 5,
+    "category": "Border Crosser",
+    "name": "The Bridge",
+    "tagline": "Joins worlds together",
+    "description": "Translates across boundaries, making collaboration seamless between teams, cultures, and disciplines.",
+    "color": "Teal"
+  },
+  {
+    "id": "h-06",
+    "number": 6,
+    "category": "Change Maker",
+    "name": "The Catalyst",
+    "tagline": "Always pushing for progress",
+    "description": "Always driving progress and improvement.",
+    "color": "Bright Red"
+  },
+  {
+    "id": "h-07",
+    "number": 7,
+    "category": "Change Maker",
+    "name": "The Disruptor",
+    "tagline": "Breaks rules to spark progress",
+    "description": "Challenges the status quo with bold, creative thinking.",
+    "color": "Bright Red"
+  },
+  {
+    "id": "h-08",
+    "number": 8,
+    "category": "Change Maker",
+    "name": "The Trailblazer",
+    "tagline": "Creates safe space for bold ideas",
+    "description": "Creates safe spaces for risk-taking, learning fast, and innovating.",
+    "color": "Bright Red"
+  },
+  {
+    "id": "h-09",
+    "number": 9,
+    "category": "Change Maker",
+    "name": "The Change-Guide",
+    "tagline": "Leads others smoothly through change",
+    "description": "Helps people through change, easing resistance and building buy-in.",
+    "color": "Bright Red"
+  },
+  {
+    "id": "h-10",
+    "number": 10,
+    "category": "Change Maker",
+    "name": "The Challenger",
+    "tagline": "Faces tough calls without fear",
+    "description": "Shows courage to take bold, sometimes unpopular decisions.",
+    "color": "Bright Red"
+  },
+  {
+    "id": "h-11",
+    "number": 11,
+    "category": "Communicator",
+    "name": "The Orator",
+    "tagline": "Inspires with words that land",
+    "description": "Speaks with clarity and inspiration.",
+    "color": "Purple"
+  },
+  {
+    "id": "h-12",
+    "number": 12,
+    "category": "Communicator",
+    "name": "The Pivot",
+    "tagline": "Adapts style, wins the room",
+    "description": "Adapts style to influence any audience.",
+    "color": "Purple"
+  },
+  {
+    "id": "h-13",
+    "number": 13,
+    "category": "Communicator",
+    "name": "The Messenger",
+    "tagline": "Keeps everyone in the loop",
+    "description": "Shares vital information openly and on time.",
+    "color": "Purple"
+  },
+  {
+    "id": "h-14",
+    "number": 14,
+    "category": "Communicator",
+    "name": "The Influencer",
+    "tagline": "Shapes opinion, builds presence",
+    "description": "Shapes opinion and builds a strong personal presence.",
+    "color": "Purple"
+  },
+  {
+    "id": "h-15",
+    "number": 15,
+    "category": "Communicator",
+    "name": "The Clarifier",
+    "tagline": "Cuts through the noise",
+    "description": "Makes complex ideas simple, ensuring messages land with crystal clarity.",
+    "color": "Purple"
+  },
+  {
+    "id": "h-16",
+    "number": 16,
+    "category": "Growth Driver",
+    "name": "The Strategist",
+    "tagline": "Designs bold, smart plans",
+    "description": "Builds bold, purposeful strategies.",
+    "color": "Black"
+  },
+  {
+    "id": "h-17",
+    "number": 17,
+    "category": "Growth Driver",
+    "name": "The Unifier",
+    "tagline": "Brings diverse needs together",
+    "description": "Aligns diverse needs into one direction.",
+    "color": "Black"
+  },
+  {
+    "id": "h-18",
+    "number": 18,
+    "category": "Growth Driver",
+    "name": "The Balancer",
+    "tagline": "Holds short- and long-term steady",
+    "description": "Juggles short- and long-term priorities with skill.",
+    "color": "Black"
+  },
+  {
+    "id": "h-19",
+    "number": 19,
+    "category": "Growth Driver",
+    "name": "The Builder",
+    "tagline": "Creates solid, lasting solutions",
+    "description": "Designs strong, commercially sound solutions.",
+    "color": "Black"
+  },
+  {
+    "id": "h-20",
+    "number": 20,
+    "category": "Growth Driver",
+    "name": "The Executor",
+    "tagline": "Turns vision into results",
+    "description": "Turns strategies into disciplined action and delivery.",
+    "color": "Black"
+  },
+  {
+    "id": "h-21",
+    "number": 21,
+    "category": "Judgement Maker",
+    "name": "The Humble Sage",
+    "tagline": "Knows what they don\u2019t know",
+    "description": "Admits limits and learns from others.",
+    "color": "Dark Grey"
+  },
+  {
+    "id": "h-22",
+    "number": 22,
+    "category": "Judgement Maker",
+    "name": "The Collaborator",
+    "tagline": "Decides better, together",
+    "description": "Brings others into decision-making.",
+    "color": "Dark Grey"
+  },
+  {
+    "id": "h-23",
+    "number": 23,
+    "category": "Judgement Maker",
+    "name": "The Decipherer",
+    "tagline": "Cuts through noise to clarity",
+    "description": "Cuts through complexity to focus on what matters.",
+    "color": "Dark Grey"
+  },
+  {
+    "id": "h-24",
+    "number": 24,
+    "category": "Judgement Maker",
+    "name": "The Decider",
+    "tagline": "Makes the call under pressure",
+    "description": "Makes timely, balanced calls under pressure.",
+    "color": "Dark Grey"
+  },
+  {
+    "id": "h-25",
+    "number": 25,
+    "category": "Judgement Maker",
+    "name": "The Ethicist",
+    "tagline": "Does right, not just easy",
+    "description": "Grounds decisions in strong moral conviction, even under pressure.",
+    "color": "Dark Grey"
+  },
+  {
+    "id": "h-26",
+    "number": 26,
+    "category": "Navigator",
+    "name": "The Listener",
+    "tagline": "Keeps a pulse on people",
+    "description": "Keeps a pulse on employee needs and engagement.",
+    "color": "Navy Blue"
+  },
+  {
+    "id": "h-27",
+    "number": 27,
+    "category": "Navigator",
+    "name": "The Integrator",
+    "tagline": "Joins up knowledge across teams",
+    "description": "Bridges knowledge across teams and markets.",
+    "color": "Navy Blue"
+  },
+  {
+    "id": "h-28",
+    "number": 28,
+    "category": "Navigator",
+    "name": "The Analyst",
+    "tagline": "Reads the market with clarity",
+    "description": "Tracks competitors and market shifts with insight.",
+    "color": "Navy Blue"
+  },
+  {
+    "id": "h-29",
+    "number": 29,
+    "category": "Navigator",
+    "name": "The Watchtower",
+    "tagline": "Spots trends before they hit",
+    "description": "Spots customer trends and brings feedback inside.",
+    "color": "Navy Blue"
+  },
+  {
+    "id": "h-30",
+    "number": 30,
+    "category": "Navigator",
+    "name": "The Futurist",
+    "tagline": "Sees what\u2019s coming next",
+    "description": "Spots emerging trends and anticipates future opportunities.",
+    "color": "Navy Blue"
+  },
+  {
+    "id": "h-31",
+    "number": 31,
+    "category": "Pressure Player",
+    "name": "The Achiever",
+    "tagline": "Always goes for the goal",
+    "description": "Pushes to meet and beat objectives.",
+    "color": "Burgundy"
+  },
+  {
+    "id": "h-32",
+    "number": 32,
+    "category": "Pressure Player",
+    "name": "The Planner",
+    "tagline": "Stays ready for every hurdle",
+    "description": "Anticipates hurdles and prepares for them.",
+    "color": "Burgundy"
+  },
+  {
+    "id": "h-33",
+    "number": 33,
+    "category": "Pressure Player",
+    "name": "The Rock",
+    "tagline": "Calm when it counts",
+    "description": "Stays steady and composed in stressful moments.",
+    "color": "Burgundy"
+  },
+  {
+    "id": "h-34",
+    "number": 34,
+    "category": "Pressure Player",
+    "name": "The Resilient",
+    "tagline": "Bounces back stronger",
+    "description": "Recovers from setbacks and learns from them.",
+    "color": "Burgundy"
+  },
+  {
+    "id": "h-35",
+    "number": 35,
+    "category": "Pressure Player",
+    "name": "The Steadfast",
+    "tagline": "Unshaken in the storm",
+    "description": "Remains resolute in crises, reassuring others and holding the line when times are toughest.",
+    "color": "Burgundy"
+  },
+  {
+    "id": "h-36",
+    "number": 36,
+    "category": "Purpose Creator",
+    "name": "The Visionary",
+    "tagline": "Sees tomorrow, inspires today",
+    "description": "Defines a purpose with real impact.",
+    "color": "Gold"
+  },
+  {
+    "id": "h-37",
+    "number": 37,
+    "category": "Purpose Creator",
+    "name": "The Flame",
+    "tagline": "Passion that ignites others",
+    "description": "Shows passion and energy for direction.",
+    "color": "Gold"
+  },
+  {
+    "id": "h-38",
+    "number": 38,
+    "category": "Purpose Creator",
+    "name": "The Storyteller",
+    "tagline": "Makes meaning unforgettable",
+    "description": "Brings purpose to life through compelling stories.",
+    "color": "Gold"
+  },
+  {
+    "id": "h-39",
+    "number": 39,
+    "category": "Purpose Creator",
+    "name": "The Guardian",
+    "tagline": "Stands firm for what\u2019s right",
+    "description": "Stands for fairness, ethics, and doing the right thing.",
+    "color": "Gold"
+  },
+  {
+    "id": "h-40",
+    "number": 40,
+    "category": "Purpose Creator",
+    "name": "The Beacon",
+    "tagline": "Lights the way forward",
+    "description": "Radiates purpose consistently, guiding others with steady principles.",
+    "color": "Gold"
+  },
+  {
+    "id": "h-41",
+    "number": 41,
+    "category": "Results Driver",
+    "name": "The Standard-Bearer",
+    "tagline": "Raises the bar for all",
+    "description": "Sets clear, stretching expectations.",
+    "color": "Bright Blue"
+  },
+  {
+    "id": "h-42",
+    "number": 42,
+    "category": "Results Driver",
+    "name": "The Judge",
+    "tagline": "Keeps standards fair and firm",
+    "description": "Keeps performance fair and accountable.",
+    "color": "Bright Blue"
+  },
+  {
+    "id": "h-43",
+    "number": 43,
+    "category": "Results Driver",
+    "name": "The Cheerleader",
+    "tagline": "Celebrates wins with energy",
+    "description": "Recognises and celebrates wins.",
+    "color": "Bright Blue"
+  },
+  {
+    "id": "h-44",
+    "number": 44,
+    "category": "Results Driver",
+    "name": "The Empowerer",
+    "tagline": "Hands over trust and authority",
+    "description": "Delegates and trusts others with authority.",
+    "color": "Bright Blue"
+  },
+  {
+    "id": "h-45",
+    "number": 45,
+    "category": "Results Driver",
+    "name": "The Energiser",
+    "tagline": "Lifts the room, fuels momentum",
+    "description": "Boosts morale and inspires energy in others.",
+    "color": "Bright Blue"
+  },
+  {
+    "id": "h-46",
+    "number": 46,
+    "category": "Self-Grower",
+    "name": "The Reflector",
+    "tagline": "Sees self clearly",
+    "description": "Stays aware of personal strengths and blind spots.",
+    "color": "Lime Green"
+  },
+  {
+    "id": "h-47",
+    "number": 47,
+    "category": "Self-Grower",
+    "name": "The Learner",
+    "tagline": "Hungry for growth",
+    "description": "Actively seeks new skills and experiences.",
+    "color": "Lime Green"
+  },
+  {
+    "id": "h-48",
+    "number": 48,
+    "category": "Self-Grower",
+    "name": "The Alchemist",
+    "tagline": "Turns lessons into gold",
+    "description": "Turns lessons into better outcomes.",
+    "color": "Lime Green"
+  },
+  {
+    "id": "h-49",
+    "number": 49,
+    "category": "Self-Grower",
+    "name": "The Seeker",
+    "tagline": "Always chasing knowledge",
+    "description": "Searches for knowledge that benefits all.",
+    "color": "Lime Green"
+  },
+  {
+    "id": "h-50",
+    "number": 50,
+    "category": "Self-Grower",
+    "name": "The Experimenter",
+    "tagline": "Learns by trying new paths",
+    "description": "Constantly tests new approaches, learns fast from trial and error, and adapts quickly.",
+    "color": "Lime Green"
+  },
+  {
+    "id": "h-51",
+    "number": 51,
+    "category": "Team Builder",
+    "name": "The Coach",
+    "tagline": "Turns feedback into growth",
+    "description": "Builds a culture of constructive feedback.",
+    "color": "Orange"
+  },
+  {
+    "id": "h-52",
+    "number": 52,
+    "category": "Team Builder",
+    "name": "The Mentor",
+    "tagline": "Shares wisdom, shapes futures",
+    "description": "Develops people through guidance and shared experience.",
+    "color": "Orange"
+  },
+  {
+    "id": "h-53",
+    "number": 53,
+    "category": "Team Builder",
+    "name": "The Talent-Scout",
+    "tagline": "Spots tomorrow\u2019s leaders today",
+    "description": "Spots and grows future leaders.",
+    "color": "Orange"
+  },
+  {
+    "id": "h-54",
+    "number": 54,
+    "category": "Team Builder",
+    "name": "The Protector",
+    "tagline": "Keeps learning spaces safe",
+    "description": "Creates psychological safety for learning and mistakes.",
+    "color": "Orange"
+  },
+  {
+    "id": "h-55",
+    "number": 55,
+    "category": "Team Builder",
+    "name": "The Harmoniser",
+    "tagline": "Keeps the team in tune",
+    "description": "Balances personalities and perspectives, resolving conflict and fostering cohesion.",
+    "color": "Orange"
+  },
+  {
+    "id": "h-56",
+    "number": 56,
+    "category": "Trust Builder",
+    "name": "The Empath",
+    "tagline": "Feels what others feel",
+    "description": "Tunes into others\u2019 feelings and responds with care.",
+    "color": "Forest Green"
+  },
+  {
+    "id": "h-57",
+    "number": 57,
+    "category": "Trust Builder",
+    "name": "The Truth-Teller",
+    "tagline": "Says it straight, earns respect",
+    "description": "Shares views honestly and transparently.",
+    "color": "Forest Green"
+  },
+  {
+    "id": "h-58",
+    "number": 58,
+    "category": "Trust Builder",
+    "name": "The Open Heart",
+    "tagline": "Leads with honesty and humility",
+    "description": "Shows vulnerability and admits challenges.",
+    "color": "Forest Green"
+  },
+  {
+    "id": "h-59",
+    "number": 59,
+    "category": "Trust Builder",
+    "name": "The Bridge-Builder",
+    "tagline": "Connects people with trust",
+    "description": "Builds respectful, trusting relationships with ease.",
+    "color": "Forest Green"
+  },
+  {
+    "id": "h-60",
+    "number": 60,
+    "category": "Trust Builder",
+    "name": "The Advocate",
+    "tagline": "Makes every voice count",
+    "description": "Champions diversity and inclusion so all perspectives are heard.",
+    "color": "Forest Green"
+  }
+]

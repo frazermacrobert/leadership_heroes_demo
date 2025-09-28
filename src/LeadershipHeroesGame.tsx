@@ -1,29 +1,15 @@
 import React, { useMemo, useState } from "react";
+import HEROES from "./heroes.json";
 
-export type Hero = { id: string; name: string; role: string; power?: string };
-
-const SEED_HEROES: Hero[] = [
-  { id: "h-01", name: "Ava Archer", role: "Navigator", power: "Sees three moves ahead" },
-  { id: "h-02", name: "Ravi Reed", role: "Change Maker", power: "Turns friction into momentum" },
-  { id: "h-03", name: "Maya Quinn", role: "Communicator", power: "Clarity under pressure" },
-  { id: "h-04", name: "Leo Park", role: "Results Driver", power: "Ships value fast" },
-  { id: "h-05", name: "Noor Ali", role: "Trust Builder", power: "Psychological safety first" },
-  { id: "h-06", name: "Sofia Chen", role: "Judgement Maker", power: "Decisions with data + gut" },
-  { id: "h-07", name: "Jonah West", role: "Growth Driver", power: "Experiments > opinions" },
-  { id: "h-08", name: "Imani Cruz", role: "Purpose Creator", power: "Mission that motivates" },
-  { id: "h-09", name: "Owen Hill", role: "Pressure Player", power: "Calm in chaos" },
-  { id: "h-10", name: "Greta King", role: "Team Builder", power: "Orchestrates A‑teams" },
-  { id: "h-11", name: "Xander Cole", role: "Border Crosser", power: "Bridges silos" },
-  { id: "h-12", name: "Priya Rao", role: "Self‑Grower", power: "Learns loudly" },
-  { id: "h-13", name: "Nia Brooks", role: "Change Maker", power: "Small bets, big wins" },
-  { id: "h-14", name: "Kai Ahmed", role: "Navigator", power: "Maps uncertainty" },
-  { id: "h-15", name: "Elise Hart", role: "Trust Builder", power: "Radical candor" },
-  { id: "h-16", name: "Tomoko Abe", role: "Results Driver", power: "Relentless focus" },
-  { id: "h-17", name: "Samir Das", role: "Communicator", power: "Story-first influence" },
-  { id: "h-18", name: "Bree Nolan", role: "Pressure Player", power: "Steers the storm" },
-  { id: "h-19", name: "Hana Park", role: "Team Builder", power: "Talent alchemist" },
-  { id: "h-20", name: "Zoe Alba", role: "Purpose Creator", power: "Why that works" },
-];
+export type Hero = {
+  id: string;
+  number: number;
+  category: string;
+  name: string;
+  tagline: string;
+  description: string;
+  color: string; // hex or css color
+};
 
 function shuffle<T>(arr: T[]) {
   const a = [...arr];
@@ -57,14 +43,13 @@ export default function LeadershipHeroesGame() {
 
   React.useEffect(() => {
     if (!initialised) {
-      setDeck(shuffle(SEED_HEROES));
+      setDeck(shuffle(HEROES as Hero[]));
       setInitialised(true);
     }
   }, [initialised]);
 
   const remainingTop = deck[deck.length - 1] || null;
   const allFiveChosen = team.every(Boolean);
-  const noMoreCards = deck.length === 0;
 
   function placeTopIntoSlot(slotIndex: number) {
     if (!deck.length || team[slotIndex]) return;
@@ -109,14 +94,8 @@ export default function LeadershipHeroesGame() {
     setDiscard(d => [top, ...d]);
   }
 
-  function restart() {
-    if (!discard.length) return;
-    setDeck(d => [...d, ...shuffle(discard)]);
-    setDiscard([]);
-  }
-
   function resetAll() {
-    setDeck(shuffle(SEED_HEROES));
+    setDeck(shuffle(HEROES as Hero[]));
     setDiscard([]);
     setTeam([null, null, null, null, null]);
     setSelectedSlot(null);
@@ -132,16 +111,17 @@ export default function LeadershipHeroesGame() {
   const instructions = useMemo(() => (
     <div className="space-y-2 text-sm leading-relaxed">
       <p>Build your team of <span className="font-semibold">five super‑leaders</span>. Browse, place, and swap.</p>
-      <ul className="list-disc ml-5 space-y-1">
-        <li>Click <span className="font-semibold">+</span> on a slot to place the top card.</li>
-        <li>Click a filled slot to swap or keep.</li>
-        <li>When you have five heroes, hit submit to download your JSON.</li>
-      </ul>
+      <ol className="list-decimal ml-5 space-y-1">
+        <li>Click <span className="font-semibold">＋</span> on a slot to place the top card.</li>
+        <li>Click a filled slot to <span className="font-semibold">Swap</span> or <span className="font-semibold">Keep</span>.</li>
+        <li>Use ✕ on the remaining card to discard and see the next.</li>
+        <li>Submit once all five slots are filled to download your team JSON.</li>
+      </ol>
     </div>
   ), []);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-pink-50 to-beige-100 text-neutral-900 p-6 md:p-10">
+    <div className="min-h-screen w-full bg-gradient-to-br from-rose-50 via-amber-50 to-stone-100 text-neutral-900 p-6 md:p-10">
       <div className="max-w-6xl mx-auto space-y-8">
         <header className="flex items-start justify-between gap-4">
           <div>
@@ -149,10 +129,12 @@ export default function LeadershipHeroesGame() {
             <p className="text-neutral-700 mt-1">Warm and engaging demo UI.</p>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => setDeck(shuffle(deck))} className="px-3 py-2 rounded-xl border bg-rose-100 hover:bg-rose-200 shadow">Shuffle</button>
+            <button onClick={() => setDeck(prev => shuffle(prev))} className="px-3 py-2 rounded-xl border bg-rose-100 hover:bg-rose-200 shadow">Shuffle</button>
             <button onClick={resetAll} className="px-3 py-2 rounded-xl border bg-rose-100 hover:bg-rose-200 shadow">Reset</button>
           </div>
         </header>
+
+        <section className="p-4 rounded-2xl bg-white/70 border shadow">{instructions}</section>
 
         {message && <div className="p-3 rounded-lg bg-rose-100 text-rose-700">{message}</div>}
 
@@ -162,12 +144,12 @@ export default function LeadershipHeroesGame() {
               <span>Remaining Hero</span>
               <span className="text-xs px-2 py-1 rounded-full bg-neutral-100 border">{deck.length}</span>
             </h2>
-            <div className="h-52 rounded-xl border flex items-center justify-center relative">
+            <div className="h-64 rounded-xl border flex items-center justify-center relative">
               {remainingTop ? (
                 <div className="relative w-full h-full p-3">
-                  <CardPreview hero={remainingTop} label="Top of Pile" />
-                  <button onClick={discardTop} className="absolute bottom-2 right-2 bg-rose-600 text-white rounded-full w-8 h-8 flex items-center justify-center shadow hover:bg-rose-700">✕</button>
-                  <button onClick={autoPlaceTop} className="absolute top-2 right-2 bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center shadow hover:bg-green-700">＋</button>
+                  <HeroCard hero={remainingTop} />
+                  <button onClick={discardTop} className="absolute bottom-2 right-2 bg-rose-600 text-white rounded-full w-9 h-9 flex items-center justify-center shadow hover:bg-rose-700">✕</button>
+                  <button onClick={autoPlaceTop} className="absolute top-2 right-2 bg-green-600 text-white rounded-full w-9 h-9 flex items-center justify-center shadow hover:bg-green-700">＋</button>
                 </div>
               ) : <span className="text-neutral-500">No more cards</span>}
             </div>
@@ -178,8 +160,8 @@ export default function LeadershipHeroesGame() {
               <span>Discarded Heroes</span>
               <span className="text-xs px-2 py-1 rounded-full bg-neutral-100 border">{discard.length}</span>
             </h2>
-            <div className="h-52 rounded-xl border flex items-center justify-center">
-              {discard.length ? <CardPreview hero={discard[0]} label="Top of Discard" subtle /> : <span className="text-neutral-500">No discards yet</span>}
+            <div className="h-64 rounded-xl border flex items-center justify-center">
+              {discard.length ? <HeroCard hero={discard[0]} subtle /> : <span className="text-neutral-500">No discards yet</span>}
             </div>
           </div>
         </section>
@@ -189,11 +171,25 @@ export default function LeadershipHeroesGame() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {team.map((card, i) => (
               <div key={i} className="relative">
-                <div onClick={() => (card ? onSlotClick(i) : undefined)}
-                  className={`rounded-2xl border h-44 p-3 flex items-center justify-center cursor-pointer transition ${card ? "bg-white hover:bg-neutral-50" : "bg-rose-50 hover:bg-rose-100 border-dashed"}`}
+                <div
+                  onClick={() => (card ? onSlotClick(i) : undefined)}
+                  className={"rounded-2xl border h-48 p-3 flex items-center justify-center transition " + (card ? "bg-white hover:bg-neutral-50 cursor-pointer" : "bg-rose-50 hover:bg-rose-100 border-dashed")}
                 >
-                  {card ? <CardPreview hero={card} compact /> : <span className="text-2xl text-rose-400">＋</span>}
+                  {card ? (
+                    <HeroCard hero={card} compact />
+                  ) : (
+                    <button
+                      onClick={() => placeTopIntoSlot(i)}
+                      disabled={!deck.length}
+                      className="w-10 h-10 text-2xl leading-none rounded-xl border bg-white hover:bg-neutral-100 disabled:opacity-50 shadow-sm"
+                      title="Place top card here"
+                      aria-label={`Place remaining hero into slot ${i + 1}`}
+                    >
+                      +
+                    </button>
+                  )}
                 </div>
+
                 {selectedSlot === i && card && (
                   <div className="absolute inset-0 rounded-2xl bg-black/50 backdrop-blur-sm flex flex-col items-center justify-center gap-2 p-3">
                     <div className="text-white text-sm mb-1">Swap this hero?</div>
@@ -218,15 +214,21 @@ export default function LeadershipHeroesGame() {
   );
 }
 
-function CardPreview({ hero, label, subtle, compact }: { hero: Hero; label?: string; subtle?: boolean; compact?: boolean }) {
+function HeroCard({ hero, label, subtle, compact }: { hero: Hero; label?: string; subtle?: boolean; compact?: boolean }) {
+  const accent = hero.color || "#e11d48"; // fallback rose-600
+  const ring = { boxShadow: `inset 0 0 0 2px ${accent}22, 0 1px 0 0 #0001` } as React.CSSProperties;
   return (
-    <div className={`w-full h-full rounded-xl border p-3 shadow flex flex-col justify-between bg-white ${subtle ? "opacity-80" : ""} ${compact ? "" : "max-w-[260px]"}`}>
-      <div className="text-xs text-neutral-500">{label}</div>
-      <div>
-        <div className="text-base font-semibold leading-tight text-rose-800">{hero.name}</div>
-        <div className="text-sm text-neutral-600">{hero.role}</div>
+    <div className={("w-full h-full rounded-xl border p-3 shadow-sm flex flex-col justify-between bg-white " + (subtle ? "opacity-85" : "")) + (compact ? "" : " max-w-[280px]")} style={ring}>
+      <div className="flex items-center justify-between text-xs">
+        <span className="font-semibold" style={{color: accent}}>#{hero.number}</span>
+        <span className="font-semibold tracking-wide uppercase" style={{color: accent}}>{hero.category}</span>
+        <span className="w-2 h-2 rounded-full" style={{backgroundColor: accent}}></span>
       </div>
-      {hero.power && <div className="text-xs text-neutral-500 mt-2 line-clamp-2">{hero.power}</div>}
+      <div className="mt-1">
+        <div className="text-lg font-bold leading-tight" style={{color: '#111'}}>{hero.name}</div>
+        {hero.tagline && <div className="text-sm" style={{color: '#4b5563'}}>{hero.tagline}</div>}
+      </div>
+      {hero.description && <div className="text-xs text-neutral-600 mt-2">{hero.description}</div>}
     </div>
   );
 }
