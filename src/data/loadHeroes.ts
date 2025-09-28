@@ -26,10 +26,10 @@ export async function loadHeroes(): Promise<EnrichedHero[]> {
       ? { primary: h.primaryColor, secondary: h.secondaryColor }
       : CATEGORY_COLORS[h.category] ?? DEFAULT_PALETTE;
 
-    // default image path (keep your existing images in /public/images/)
     const image =
       h.image ??
-      new URL(`images/${(h.name || "hero").toLowerCase().replace(/\s+/g, "_")}.png`,
+      new URL(
+        `images/${(h.name || "hero").toLowerCase().replace(/\s+/g, "_")}.png`,
         import.meta.env.BASE_URL
       ).toString();
 
