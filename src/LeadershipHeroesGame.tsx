@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import HeroCard from "./components/HeroCard";
 import heroesData from "./data/heroes.json";
 
-// Base data shape from JSON
+// Base JSON shape
 export type Hero = {
-  id: string;
+  id: string | number;
   number: number;
   category: string;
   name: string;
@@ -15,16 +15,36 @@ export type Hero = {
   secondary: string;
 };
 
-// If later code expects extra fields, extend here
 type EnrichedHero = Hero & { image?: string };
 
+// Helpers to avoid `.replace` on undefined
+const safeStr = (v: unknown) => (typeof v === "string" ? v : "");
+const slug = (v: unknown) => safeStr(v).toLowerCase().replace(/\s+/g, "-");
+
 function LeadershipHeroesGame() {
-  // 1) Load heroes (no fetch)
   const [heroes, setHeroes] = useState<EnrichedHero[] | null>(null);
 
   useEffect(() => {
-    setHeroes(heroesData as EnrichedHero[]);
+    try {
+      const clean = (heroesData as any[]).map((h, i) => ({
+        id: String(h?.id ?? i + 1),
+        number: Number(h?.number ?? i + 1),
+        name: safeStr(h?.name) || `Hero ${i + 1}`,
+        category: safeStr(h?.category) || "Uncategorised",
+        tagline: safeStr(h?.tagline),
+        description: safeStr(h?.description),
+        color: safeStr(h?.color) || "#6b7280",     // neutral fallback
+        secondary: safeStr(h?.secondary) || "#9ca3af",
+        image: safeStr(h?.image) || `/images/heroes/${slug(h?.name || `hero-${i + 1}`)}.webp`,
+      }));
+      setHeroes(clean);
+    } catch (e) {
+      console.error("Failed to prepare heroes:", e, heroesData);
+      setHeroes([]);
+    }
   }, []);
+
+  // ... keep the rest of your file the same
 
   // 2) Game state (use EnrichedHero to match everywhere)
   const [initialised, setInitialised] = useState(false);
