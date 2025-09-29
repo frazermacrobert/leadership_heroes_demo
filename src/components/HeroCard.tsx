@@ -1,16 +1,16 @@
 import React from "react";
 import { readableOn } from "../theme/colors";
 
-// Inline type definition for a hero
+// Inline type
 type EnrichedHero = {
-  id: string;
+  id: string | number;
   number: number;
   category: string;
   name: string;
   tagline: string;
   description: string;
-  color: string;
-  secondary: string;
+  color: string;     // primary
+  secondary: string; // secondary
   image?: string;
 };
 
@@ -21,8 +21,12 @@ type Props = {
 };
 
 export default function HeroCard({ hero, onClick, clickable = false }: Props) {
-  const textOnPrimary = readableOn(hero.color);
-  const textOnSecondary = readableOn(hero.secondary);
+  // GUARANTEE strings for the color helper
+  const primary = typeof hero.color === "string" && hero.color ? hero.color : "#6b7280";   // gray-600
+  const secondary = typeof hero.secondary === "string" && hero.secondary ? hero.secondary : "#9ca3af"; // gray-400
+
+  const textOnPrimary = readableOn(primary);
+  const textOnSecondary = readableOn(secondary);
 
   return (
     <div
@@ -34,64 +38,47 @@ export default function HeroCard({ hero, onClick, clickable = false }: Props) {
         "border",
       ].join(" ")}
       style={{
-        borderColor: hero.color,
-        background: `linear-gradient(135deg, ${hero.secondary} 0%, ${hero.secondary} 55%, ${hero.color} 100%)`,
+        borderColor: primary,
+        background: "#fff",
       }}
     >
-      {/* top strip */}
-      <div className="h-1.5" style={{ backgroundColor: hero.color }} />
+      <div className="h-1.5" style={{ backgroundColor: primary }} />
 
       <div className="p-4 flex items-start gap-4">
         <div
           className="w-16 h-16 rounded-xl overflow-hidden border"
-          style={{ borderColor: hero.color, backgroundColor: "#fff" }}
+          style={{ borderColor: primary, backgroundColor: "#fff" }}
         >
-          {/* Safe image; if missing it won’t break layout */}
-          <img
-            src={hero.image}
-            alt={hero.name}
-            className="w-full h-full object-contain"
-            loading="lazy"
-          />
+          {hero.image ? (
+            <img
+              src={hero.image}
+              alt={hero.name || "Hero"}
+              className="w-full h-full object-contain"
+              loading="lazy"
+            />
+          ) : null}
         </div>
 
         <div className="flex-1">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3
-              className="font-semibold text-lg leading-tight"
-              style={{ color: textOnSecondary }}
-            >
-              {hero.name}
+            <h3 className="font-semibold text-lg leading-tight" style={{ color: textOnSecondary }}>
+              {hero.name || "Unnamed Hero"}
             </h3>
             <span
               className="text-xs px-2 py-1 rounded-full border"
-              style={{
-                backgroundColor: hero.color,
-                color: textOnPrimary,
-                borderColor: hero.color,
-              }}
+              style={{ backgroundColor: primary, color: textOnPrimary, borderColor: primary }}
             >
-              {hero.category}
+              {hero.category || "Uncategorised"}
             </span>
           </div>
 
-          {/* Identity bars for extra punch */}
           <div className="mt-3 flex gap-1.5 items-center">
-            <span
-              className="inline-block h-2 w-12 rounded-full"
-              style={{ backgroundColor: hero.color }}
-            />
+            <span className="inline-block h-2 w-12 rounded-full" style={{ backgroundColor: primary }} />
             <span
               className="inline-block h-2 w-6 rounded-full"
-              style={{
-                backgroundColor: hero.secondary,
-                border: `1px solid ${hero.color}22`,
-              }}
+              style={{ backgroundColor: secondary, border: `1px solid ${primary}22` }}
             />
           </div>
-
-          {/* Optional metadata or tagline slot */}
-          {/* <p className="mt-2 text-sm" style={{ color: textOnSecondary }}>Short descriptor here...</p> */}
         </div>
       </div>
     </div>
