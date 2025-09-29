@@ -1,9 +1,7 @@
-// src/LeadershipHeroesGame.tsx
 import { useEffect, useMemo, useState } from "react";
 import HeroCard from "./components/HeroCard";
 import heroesData from "./data/heroes.json";
 
-// Types that match HeroCard
 type Hero = {
   id: string | number;
   number: number;
@@ -16,6 +14,23 @@ type Hero = {
   image?: string;
 };
 type EnrichedHero = Hero;
+
+const safeStr = (v: unknown) => (typeof v === "string" ? v : "");
+const DEFAULT_PRIMARY = "#6b7280";
+const DEFAULT_SECONDARY = "#9ca3af";
+
+// Ensure every field is a string/number (prevents `.replace` on undefined inside helpers)
+const baseHeroes: EnrichedHero[] = (Array.isArray(heroesData) ? (heroesData as any[]) : []).map((h, i) => ({
+  id: String(h?.id ?? i + 1),
+  number: Number(h?.number ?? i + 1),
+  category: safeStr(h?.category) || "Uncategorised",
+  name: safeStr(h?.name) || `Hero ${i + 1}`,
+  tagline: safeStr(h?.tagline),
+  description: safeStr(h?.description),
+  color: safeStr(h?.color) || DEFAULT_PRIMARY,
+  secondary: safeStr(h?.secondary) || DEFAULT_SECONDARY,
+  image: safeStr(h?.image) || undefined,
+}));
 
 // Utilities
 function shuffle<T>(arr: T[]): T[] {
