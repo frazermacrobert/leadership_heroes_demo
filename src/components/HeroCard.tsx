@@ -1,107 +1,79 @@
-import React from "react";
-import { readableOn } from "../theme/colors";
+import React, { useMemo } from "react";
+import { toColor } from "../utils/colors";
 
-type EnrichedHero = {
+type CardHero = {
   id: string | number;
   number: number;
   category: string;
   name: string;
-  tagline: string;
-  description: string;
+  tagline?: string;
+  description?: string;
   color: string;     // primary
   secondary: string; // secondary
-  image?: string;
 };
 
-type Props = {
-  hero: EnrichedHero;
-};
+export default function HeroCard({
+  hero,
+  clickable = false,
+  onClick,
+  drawEmpty = false,
+}: {
+  hero: CardHero;
+  clickable?: boolean;
+  onClick?: () => void;
+  drawEmpty?: boolean;
+}) {
+  const primary = toColor(hero.color);
+  const secondary = toColor(hero.secondary);
 
-export default function HeroCard({ hero }: Props) {
-  const primary =
-    typeof hero.color === "string" && hero.color ? hero.color : "#6b7280"; // gray-600
-  const secondary =
-    typeof hero.secondary === "string" && hero.secondary ? hero.secondary : "#9ca3af"; // gray-400
+  const accent = useMemo(
+    () => ({ background: `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)` }),
+    [primary, secondary]
+  );
 
-  const textOnPrimary = readableOn(primary);
-  const textOnSecondary = readableOn(secondary);
+  const canDiscard = clickable && !drawEmpty;
 
   return (
     <div
-      className={[
-        "rounded-2xl shadow-md overflow-hidden border bg-white",
-      ].join(" ")}
-      style={{ borderColor: primary }}
+      className={`rounded-2xl overflow-hidden border bg-white shadow ${canDiscard ? "cursor-pointer hover:shadow-md" : ""}`}
+      onClick={canDiscard ? onClick : undefined}
+      title={
+        canDiscard
+          ? "Click to discard this card"
+          : drawEmpty && clickable
+          ? "Draw pile is empty — discarding disabled"
+          : undefined
+      }
+      style={{ borderColor: `${primary}33` }}
     >
-      {/* top strip */}
-      <div className="h-1.5" style={{ backgroundColor: primary }} />
-
-      <div className="p-4 flex items-start gap-4">
-        <div
-          className="w-16 h-16 rounded-xl overflow-hidden border flex items-center justify-center"
-          style={{ borderColor: primary, backgroundColor: "#fff" }}
-        >
-          {hero.image ? (
-            <img
-              src={hero.image}
-              alt={hero.name || "Hero"}
-              className="w-full h-full object-contain"
-              loading="lazy"
-            />
-          ) : (
-            <span className="text-xs text-gray-400">No image</span>
-          )}
+      <div className="h-1.5" style={accent} />
+      <div className="p-4">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-xs font-semibold text-gray-500">#{hero.number}</span>
+          <h3 className="font-semibold text-lg leading-tight truncate">{hero.name}</h3>
+          <span className="text-[11px] px-2 py-0.5 rounded-full border" style={{ borderColor: primary }}>
+            {hero.category}
+          </span>
         </div>
-
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-semibold text-gray-500">#{hero.number}</span>
-            <h3 className="font-semibold text-lg leading-tight truncate">
-              {hero.name || "Unnamed Hero"}
-            </h3>
-            <span
-              className="text-xs px-2 py-1 rounded-full border"
-              style={{
-                backgroundColor: primary,
-                color: textOnPrimary,
-                borderColor: primary,
-              }}
-            >
-              {hero.category || "Uncategorised"}
-            </span>
-          </div>
-
-          {/* Identity bars */}
-          <div className="mt-2 flex gap-1.5 items-center">
-            <span
-              className="inline-block h-2 w-12 rounded-full"
-              style={{ backgroundColor: primary }}
-            />
-            <span
-              className="inline-block h-2 w-6 rounded-full"
-              style={{
-                backgroundColor: secondary,
-                border: `1px solid ${primary}22`,
-              }}
-            />
-          </div>
-
-          {/* Tagline + description */}
-          {hero.tagline && (
-            <p className="mt-2 text-sm text-gray-700 line-clamp-1">
-              {hero.tagline}
-            </p>
-          )}
-          {hero.description && (
-            <p className="mt-1 text-xs text-gray-600 line-clamp-2">
-              {hero.description}
-            </p>
-          )}
-        </div>
+        {hero.tagline && (
+          <p className="mt-2 text-sm text-gray-800 line-clamp-1">“{hero.tagline}”</p>
+        )}
+        {hero.description && (
+          <p className="mt-1 text-xs text-gray-600 line-clamp-2">{hero.description}</p>
+        )}
       </div>
-
-      {/* bottom accent */}
-      <div className="h-1" style={{ backgroundColor: secondary }} />
+      <div className="flex items-center justify-between px-3 py-2 text-xs">
+        <div className="flex gap-2">
+          <span className="inline-block h-1.5 w-10 rounded-full" style={{ background: primary }} />
+          <span className="inline-block h-1.5 w-6 rounded-full" style={{ background: secondary }} />
+        </div>
+        {clickable &&
+          (drawEmpty ? (
+            <span className="text-gray-400">No draw left</span>
+          ) : (
+            <span className="text-red-600">❌</span>
+          ))}
+      </div>
     </div>
   );
 }
