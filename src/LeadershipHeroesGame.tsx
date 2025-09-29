@@ -24,17 +24,23 @@ function shuffle<T>(arr: T[]) {
   return a;
 }
 
+import { resolveColors } from "./utils/colors";
+
 const normalize = (list: any[]): Hero[] =>
-  list.map((c: any, i: number): Hero => ({
-    id: c?.id ?? i + 1,
-    number: Number(c?.number ?? i + 1),
-    category: String(c?.category ?? "Uncategorised"),
-    name: String(c?.name ?? c?.heroName ?? `Hero ${i + 1}`),
-    tagline: c?.tagline ? String(c.tagline) : "",
-    description: c?.description ? String(c.description) : "",
-    color: String(c?.color ?? c?.primaryColor ?? "#6b7280"),
-    secondary: String(c?.secondary ?? c?.secondaryColor ?? "#9ca3af"),
-  }));
+  list.map((c: any, i: number): Hero => {
+    const { primary, secondary } = resolveColors(String(c?.category ?? "Uncategorised"), c?.color, c?.secondary);
+    return {
+      id: c?.id ?? i + 1,
+      number: Number(c?.number ?? i + 1),
+      category: String(c?.category ?? "Uncategorised"),
+      name: String(c?.name ?? c?.heroName ?? `Hero ${i + 1}`),
+      tagline: c?.tagline ? String(c.tagline) : "",
+      description: c?.description ? String(c.description) : "",
+      color: primary,
+      secondary,
+    };
+  });
+
 
 // ---------- Component ----------
 export default function LeadershipHeroesGame() {
@@ -177,14 +183,20 @@ export default function LeadershipHeroesGame() {
               <div key={h.id} className="space-y-2">
                 <HeroCard hero={h} />
                 <div className="flex gap-2">
-                  <button
-                    className="flex-1 px-3 py-2 rounded-lg border shadow-sm hover:shadow transition"
-                    onClick={() => addFromRemaining(idx)}
-                    disabled={hand.length >= 5}
-                    title={hand.length >= 5 ? "Hand full – discard from your hand first." : "Add to your hand"}
-                  >
-                    ✅ Add to hand
-                  </button>
+                 <button
+  onClick={() => addFromRemaining(idx)}
+  disabled={hand.length >= 5}
+  className={[
+    "flex-1 px-3 py-2 rounded-lg border shadow-sm transition",
+    hand.length >= 5
+      ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+      : "hover:shadow"
+  ].join(" ")}
+  title={hand.length >= 5 ? "Hand full – discard from your hand first." : "Add to your hand"}
+>
+  ✅ Add to hand
+</button>
+
                   <button
                     className="flex-1 px-3 py-2 rounded-lg border shadow-sm hover:shadow transition"
                     onClick={() => discardFromRemaining(idx)}
